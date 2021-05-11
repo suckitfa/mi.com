@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        a {
+            margin: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{title}}</h1>
+        <!-- 让元素或者组件只渲染一次，该指令不需要比表达式，之后被视为静态内容 -->
+        <a v-for="nav in navs" href="nav.url" v-once>{{nav.name}}</a>
+    </div>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: "#app",
+            data: {
+                title: "",
+                navs: [{
+                    name: "首页",
+                    url: "/home"
+                }, {
+                    name: "新闻",
+                    url: "/news"
+                }, {
+                    name: "视频",
+                    url: "/video"
+                }]
+            },
+            methods: {
+
+            },
+        })
+    </script>
+</body>
+
+</html>

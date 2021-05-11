@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 需求： 让某个元素不定在页面中的某个位置，出现滚动条时
+    元素也不会随着滚动 -->
+    <div id="app">
+        <p v-pin="100">
+            Vue很强！
+        </p>
+    </div>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        // 全局注册自定义指令
+        Vue.directive('pin', {
+            bind: function(el, binding, vnode) {
+                el.style.position = 'fixed';
+                // 获取binding中的属性 arg， 也就是指令的参数
+                let s = binding.arg || 'left';
+                // 获取指令传入的 值
+                el.style[s] = binding.value + 'px';
+            }
+        });
+        new Vue({
+            el: "#app",
+            data: {
+                direction: "left"
+            }
+        })
+    </script>
+</body>
+
+</html>

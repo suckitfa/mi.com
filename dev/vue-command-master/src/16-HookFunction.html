@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app" v-demo:foo.a.b="message">
+    </div>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        // 定义全局的指令
+        Vue.directive('demo', {
+            bind: function(el, binding, vnode) {
+                var s = JSON.stringify;
+                el.innerHTML =
+                    '1. name: ' + s(binding.name) + '<br />' +
+                    '2. value: ' + s(binding.value) + '<br />' +
+                    '3. expression: ' + s(binding.expression) + '<br />' +
+                    '4. argument: ' + s(binding.arg) + '<br />' +
+                    '5. modifiers: ' + s(binding.modifiers) + '<br />' +
+                    '6. vnode keys: ' + Object.keys(vnode).join(', ') + '<br />';
+            }
+
+            // Object.keys() 获取对象的全部属性
+        });
+        const app = new Vue({
+            el: "#app",
+            data: {
+                message: "Vue.js很牛逼！"
+            },
+            methods: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>

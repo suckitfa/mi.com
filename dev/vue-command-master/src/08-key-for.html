@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <p>
+            ID: <input type="text" v-model="bookID" /> 书名: <input type="text" v-model="title" />
+            <button @click="add()">增加</button>
+        </p>
+        <h3>就地更新:</h3>
+        <p v-for="book in books">
+            <input type="checkbox">
+            <span>ID: {{book.id}}, 书名:{{book.title}}</span>
+        </p>
+        <h3>增加key值后对比:</h3>
+        <p v-for="book in books" :key="book.id">
+            <input type="checkbox">
+            <span>ID: {{book.id}}, 书名:{{book.title}}</span>
+        </p>
+    </div>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: "#app",
+            data: {
+                bookID: "",
+                title: "",
+                books: [{
+                    id: 1,
+                    title: "Vue无难事"
+                }, {
+                    id: 2,
+                    title: "VC++深入浅出"
+                }, {
+                    id: 3,
+                    title: "Servlet/JSP深入详解"
+                }]
+            },
+            methods: {
+                add() {
+                    this.books.unshift({
+                        id: this.bookID,
+                        title: this.title
+                    });
+                    this.bookID = ""
+                    this.title = ""
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
